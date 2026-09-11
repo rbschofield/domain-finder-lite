@@ -1,0 +1,2 @@
+# Domain Finder Lite core has no third-party Python dependencies.
+# This file is intentionally empty so local-only use requires only Python 3.10+.

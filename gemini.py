@@ -12,11 +12,6 @@ The main application will continue to work if:
 import os
 import re
 
-from google import genai
-from google.genai import types
-
-os.environ["GEMINI_API_KEY"] = "{your-gemini-api-key}"
-
 # A relatively small, fast model is appropriate for name generation.
 MODEL_NAME = "gemini-2.5-flash"
 
@@ -89,6 +84,25 @@ def generate_ai_candidates(
 
     Returns cleaned .com domain names.
     """
+
+    try:
+        from google import genai
+        from google.genai import types
+    except ImportError:
+        print()
+        print(
+            "ERROR: AI generation requires the optional "
+            "google-genai package."
+        )
+        print(
+            "Install it with: pip install -r requirements-ai.txt"
+        )
+        print(
+            "Continuing with local generation only."
+        )
+        print()
+
+        return []
 
     api_key = get_api_key()
 
